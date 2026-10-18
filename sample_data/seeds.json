@@ -1,0 +1,123 @@
+{
+  "description": "Reproducible deterministic test fixtures for Cerevyn PS09: Adaptive Memory Match",
+  "prng_algorithm": "Mulberry32 (32-bit deterministic PRNG) with modern Fisher-Yates shuffle",
+  "grid_size": "4x4 (16 cards, 8 distinct pairs)",
+  "test_fixtures": [
+    {
+      "seed": 42,
+      "description": "Deterministic fixture 42 used in automated integration and completion tests",
+      "deck": [
+        { "position": 0, "id": "lightning-1", "symbol": "lightning" },
+        { "position": 1, "id": "moon-2", "symbol": "moon" },
+        { "position": 2, "id": "heart-1", "symbol": "heart" },
+        { "position": 3, "id": "paper-plane-2", "symbol": "paper-plane" },
+        { "position": 4, "id": "leaf-1", "symbol": "leaf" },
+        { "position": 5, "id": "heart-2", "symbol": "heart" },
+        { "position": 6, "id": "star-2", "symbol": "star" },
+        { "position": 7, "id": "paper-plane-1", "symbol": "paper-plane" },
+        { "position": 8, "id": "diamond-1", "symbol": "diamond" },
+        { "position": 9, "id": "lightning-2", "symbol": "lightning" },
+        { "position": 10, "id": "leaf-2", "symbol": "leaf" },
+        { "position": 11, "id": "star-1", "symbol": "star" },
+        { "position": 12, "id": "sun-1", "symbol": "sun" },
+        { "position": 13, "id": "diamond-2", "symbol": "diamond" },
+        { "position": 14, "id": "moon-1", "symbol": "moon" },
+        { "position": 15, "id": "sun-2", "symbol": "sun" }
+      ],
+      "matching_index_pairs": [
+        [0, 9],
+        [1, 14],
+        [2, 5],
+        [3, 7],
+        [4, 10],
+        [6, 11],
+        [8, 13],
+        [12, 15]
+      ]
+    },
+    {
+      "seed": 100,
+      "description": "Deterministic fixture 100 used in unit tests for initial state and selection validation",
+      "deck": [
+        { "position": 0, "id": "diamond-1", "symbol": "diamond" },
+        { "position": 1, "id": "star-1", "symbol": "star" },
+        { "position": 2, "id": "leaf-2", "symbol": "leaf" },
+        { "position": 3, "id": "sun-1", "symbol": "sun" },
+        { "position": 4, "id": "sun-2", "symbol": "sun" },
+        { "position": 5, "id": "lightning-1", "symbol": "lightning" },
+        { "position": 6, "id": "paper-plane-2", "symbol": "paper-plane" },
+        { "position": 7, "id": "heart-2", "symbol": "heart" },
+        { "position": 8, "id": "paper-plane-1", "symbol": "paper-plane" },
+        { "position": 9, "id": "heart-1", "symbol": "heart" },
+        { "position": 10, "id": "lightning-2", "symbol": "lightning" },
+        { "position": 11, "id": "moon-1", "symbol": "moon" },
+        { "position": 12, "id": "diamond-2", "symbol": "diamond" },
+        { "position": 13, "id": "moon-2", "symbol": "moon" },
+        { "position": 14, "id": "leaf-1", "symbol": "leaf" },
+        { "position": 15, "id": "star-2", "symbol": "star" }
+      ],
+      "matching_index_pairs": [
+        [0, 12],
+        [1, 15],
+        [2, 14],
+        [3, 4],
+        [5, 10],
+        [6, 8],
+        [7, 9],
+        [11, 13]
+      ]
+    },
+    {
+      "seed": 777,
+      "description": "Deterministic fixture 777 for stress and speed run benchmarking",
+      "deck": [
+        { "position": 0, "id": "star-2", "symbol": "star" },
+        { "position": 1, "id": "lightning-1", "symbol": "lightning" },
+        { "position": 2, "id": "sun-2", "symbol": "sun" },
+        { "position": 3, "id": "paper-plane-1", "symbol": "paper-plane" },
+        { "position": 4, "id": "sun-1", "symbol": "sun" },
+        { "position": 5, "id": "diamond-2", "symbol": "diamond" },
+        { "position": 6, "id": "leaf-2", "symbol": "leaf" },
+        { "position": 7, "id": "paper-plane-2", "symbol": "paper-plane" },
+        { "position": 8, "id": "moon-1", "symbol": "moon" },
+        { "position": 9, "id": "lightning-2", "symbol": "lightning" },
+        { "position": 10, "id": "leaf-1", "symbol": "leaf" },
+        { "position": 11, "id": "moon-2", "symbol": "moon" },
+        { "position": 12, "id": "heart-2", "symbol": "heart" },
+        { "position": 13, "id": "star-1", "symbol": "star" },
+        { "position": 14, "id": "heart-1", "symbol": "heart" },
+        { "position": 15, "id": "diamond-1", "symbol": "diamond" }
+      ],
+      "matching_index_pairs": [
+        [0, 13],
+        [1, 9],
+        [2, 4],
+        [3, 7],
+        [5, 15],
+        [6, 10],
+        [8, 11],
+        [12, 14]
+      ]
+    }
+  ],
+  "adaptation_thresholds": {
+    "strong": {
+      "condition": "moves <= 12 OR (moves <= 16 AND elapsed_seconds <= 45)",
+      "easy_transition": "medium",
+      "medium_transition": "hard",
+      "hard_transition": "hard (boundary)"
+    },
+    "moderate": {
+      "condition": "moves between 13 and 20 AND elapsed_seconds <= 120",
+      "easy_transition": "easy",
+      "medium_transition": "medium",
+      "hard_transition": "hard"
+    },
+    "struggling": {
+      "condition": "moves >= 21 OR elapsed_seconds > 120",
+      "hard_transition": "medium",
+      "medium_transition": "easy",
+      "easy_transition": "easy (boundary)"
+    }
+  }
+}
